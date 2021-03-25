@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewTreeLifecycleOwner
 
 
 class MainActivity : AppCompatActivity() {
@@ -30,10 +31,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_main)
+        ViewTreeLifecycleOwner.set(window.decorView, this)
+        setContentView(R.layout.activity_main)
 
-        setContent {
-            /*Column(
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.main_container, RecipeListFragment())
+            .commit()
+        /*setContent {
+            *//*Column(
                 modifier = Modifier.padding(16.dp)
             ) {
                 Text(text = "Hey Some text")
@@ -41,10 +46,10 @@ class MainActivity : AppCompatActivity() {
                 Button(onClick = {}) {
                     Text(text = "BUTTON")
                 }
-            }*/
+            }*//*
             //SimpleColumnComposable()
-            SimpleRowComposable()
-        }
+            //SimpleRowComposable()
+        }*/
     }
 
     /*@Preview
@@ -95,11 +100,11 @@ class MainActivity : AppCompatActivity() {
      * In Row you can align Modifier.align(Alignment.CenterVertically).
      * **/
 
-    @Preview
+   /* @Preview
     @Composable
     fun SimpleRowComposable(){
         //Center Item In the Screen using Row
-        /*Row(
+        *//*Row(
             modifier = Modifier.fillMaxSize(),
             horizontalArrangement = Arrangement.Center
         ) {
@@ -107,7 +112,7 @@ class MainActivity : AppCompatActivity() {
                 text = "Hello",
                 modifier = Modifier.align(Alignment.CenterVertically)
             )
-        }*/
+        }*//*
 
         Column(
             modifier = Modifier
@@ -162,5 +167,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-    }
+    }*/
 }
