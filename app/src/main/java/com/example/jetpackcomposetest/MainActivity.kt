@@ -34,9 +34,11 @@ class MainActivity : AppCompatActivity() {
         ViewTreeLifecycleOwner.set(window.decorView, this)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager.beginTransaction()
+        /*supportFragmentManager.beginTransaction()
             .replace(R.id.main_container, RecipeListFragment())
-            .commit()
+            .commit()*/
+
+
         /*setContent {
             *//*Column(
                 modifier = Modifier.padding(16.dp)

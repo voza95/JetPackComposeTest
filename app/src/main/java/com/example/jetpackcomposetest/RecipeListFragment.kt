@@ -9,16 +9,21 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 
 class RecipeListFragment: Fragment() {
 
@@ -27,19 +32,38 @@ class RecipeListFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_recipe_list,container,false)
+        /*val view = inflater.inflate(R.layout.fragment_recipe_list,container,false)
         view.findViewById<ComposeView>(R.id.compose_view).setContent {
             dummyView()
         }
-        /*val view = ComposeView(context = requireActivity()).apply {
+        *//*val view = ComposeView(context = requireActivity()).apply {
             setContent {
                 Text(text = "Hello world.")
             }
-        }*/
-        return view
+        }*//*
+        return view*/
+
+        return ComposeView(requireContext()).apply {
+            setContent {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text(
+                        text = "Recipe List",
+                        style = TextStyle(
+                            fontSize = 21.sp
+                        )
+                    )
+                    Spacer(modifier = Modifier.padding(10.dp))
+                    Button(onClick = {
+                        findNavController().navigate(R.id.recipeFragment)
+                    }) {
+                        Text(text = "TO RECIPE FRAGMENT")
+                    }
+                }
+            }
+        }
     }
 
-    @Preview
+    /*@Preview
     @Composable
     fun dummyView(){
         Column(
@@ -56,7 +80,8 @@ class RecipeListFragment: Fragment() {
 
             val demo = Text(text = "OK")
 
+
         }
-    }
+    }*/
 
 }
